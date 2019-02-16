@@ -1,14 +1,15 @@
 //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 ((d, w, c, ls) => {
-  Reveal.configure({ 
+  Reveal.configure({
     //slideNumber: false,
     //progress: false,
     touch: false,
-    keyboard: {
-      32: null
-    }
+    // keyboard: {
+    //   32: null
+    // }
+    keyboard: false,
   });
-  
+
   var menu = d.getElementById("showmenu"),
     menuContainer = d.getElementById("menu-container"),
     menuAcordeon = d.getElementById('menu-acordeon'),
@@ -81,7 +82,7 @@
       if (_switch) {
         return false;
       }
-  
+
       if (
         (
           (e.target.className == 'navigate-right enabled' || e.target.className == "navigate-right enabled") ||
@@ -104,7 +105,7 @@
         var block = false;
         var path = null;
         var _ok = false;
-      
+
         for (var i in dataObject) {
           if(dataObject[i].menu.length > 0){
             var menu = dataObject[i].menu;
@@ -120,7 +121,7 @@
                 ls.sequencing = res+_new;
                 break;
               }
-    
+
               if (!menu[_i].previous_view && !_ok) {
                 path = ls.getItem('url');
                 block = true;
@@ -255,7 +256,7 @@
         var block = false;
         var path = null;
         var _ok = false;
-      
+
         for (var i in dataObject) {
           if(dataObject[i].menu.length > 0){
             var menu = dataObject[i].menu;
@@ -271,7 +272,7 @@
                 ls.sequencing = res+_new;
                 break;
               }
-    
+
               if (!menu[_i].previous_view && !_ok) {
                 path = ls.getItem('url');
                 block = true;
@@ -417,7 +418,7 @@
                 ls.sequencing = res+_new;
                 break;
               }
-    
+
               if (!menu[_i].previous_view && !_ok) {
                 path = ls.getItem('url');
                 block = true;
@@ -496,7 +497,7 @@
   }, false);
 
   d.addEventListener('touchend', (e) => {
-   
+
     if ((e.target.nodeName === "BUTTON" || e.target.nodeName == 'BUTTON') ||
       (e.target.nodeName === "DIV" || e.target.nodeName == 'DIV')
     ) {
@@ -561,7 +562,7 @@
                 ls.sequencing = res+_new;
                 break;
               }
-    
+
               if (!menu[_i].previous_view && !_ok) {
                 path = ls.getItem('url');
                 block = true;
@@ -575,7 +576,7 @@
           ls.setItem('dataObject', JSON.stringify(dataObject));
         }
         //c()
-        
+
         if (block && (
           (
             (e.target.className == 'navigate-right enabled' || e.target.className == "navigate-right enabled") ||
@@ -766,7 +767,7 @@
         url_save.push(url_obj);
         ls.setItem('url_save', JSON.stringify(url_save));
         ls.setItem("url", element);
-  
+
         var _switch = false;
         for (var i in url_save) {
           if (url_save[i] == element) {
@@ -774,9 +775,9 @@
             break;
           }
         }
-    
+
         c(_switch)
-      
+
         if(_switch) {
           var str = href;
           var res = str.replace("/", "");
