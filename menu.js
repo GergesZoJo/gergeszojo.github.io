@@ -1,15 +1,34 @@
 //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 ((d, w, c, ls) => {
+
   Reveal.configure({
-    //slideNumber: false,
-    //progress: false,
     touch: false,
-    // keyboard: {
-    //   32: null
-    // }
-    keyboard: false,
+    parallaxBackgroundHorizontal: null,
+    parallaxBackgroundVertical: null,
+    keyboard: {
+      32: null
+    }
   });
 
+  Reveal.addEventListener( 'init', function( event ) {
+    var edge = d.getElementById('edge');
+    edge.setAttribute('style', 'background-color:red; text-align:center; display: none');
+  });
+
+  Reveal.addEventListener( 'shown', function( event) {
+    var edge = d.getElementById('edge');
+    edge.setAttribute('style', 'background-color:red; text-align:center; display: block');
+  });
+
+  /*document.addEventListener('DOMContentLoaded',function(){
+    Reveal.addEventListener( 'slidechanged', function( event ) {
+      c( event.previousSlide)
+      c( event.currentSlide)
+      c(event.indexh)
+      c(event.indexv)
+    } );
+  });*/
+ 
   var menu = d.getElementById("showmenu"),
     menuContainer = d.getElementById("menu-container"),
     menuAcordeon = d.getElementById('menu-acordeon'),
@@ -55,7 +74,7 @@
     elem.style.width = Math.ceil(valor1 * 100) + "%";
   }
 
-  //TODO: //////////////////////////////////////////
+  //TODO: /////////////////////////////////////////
   d.addEventListener('click', (e) => {
     if ((e.target.nodeName === "BUTTON" || e.target.nodeName == 'BUTTON') ||
       (e.target.nodeName === "DIV" || e.target.nodeName == 'DIV')
@@ -82,7 +101,7 @@
       if (_switch) {
         return false;
       }
-
+  
       if (
         (
           (e.target.className == 'navigate-right enabled' || e.target.className == "navigate-right enabled") ||
@@ -105,7 +124,7 @@
         var block = false;
         var path = null;
         var _ok = false;
-
+      
         for (var i in dataObject) {
           if(dataObject[i].menu.length > 0){
             var menu = dataObject[i].menu;
@@ -121,7 +140,7 @@
                 ls.sequencing = res+_new;
                 break;
               }
-
+    
               if (!menu[_i].previous_view && !_ok) {
                 path = ls.getItem('url');
                 block = true;
@@ -148,7 +167,7 @@
         )
         ) {
           alert(alert_text);
-          location.href = path;
+          w.location.href = path;
           return false;
         }
 
@@ -203,22 +222,8 @@
   });
 
   d.addEventListener('keyup', (e) => {
-    e.preventDefault()
     if( e.keyCode=='32') return false;
     if (e.keyCode == '37' || e.keyCode == '38' || e.keyCode == '39' || e.keyCode == '40') {
-        c('keyup event begin')
-        c(e)
-        c('keyup event after')
-
-        e.document.onreadystatechange = () => {
-            c('readyState begin')
-            c( d.readyState )
-            c('readyState after')
-            if (d.readyState === 'complete') {
-                // document ready
-            }
-        };
-
       var url = location.href,
         dataObject = [];
 
@@ -256,7 +261,7 @@
         var block = false;
         var path = null;
         var _ok = false;
-
+      
         for (var i in dataObject) {
           if(dataObject[i].menu.length > 0){
             var menu = dataObject[i].menu;
@@ -272,7 +277,7 @@
                 ls.sequencing = res+_new;
                 break;
               }
-
+    
               if (!menu[_i].previous_view && !_ok) {
                 path = ls.getItem('url');
                 block = true;
@@ -292,7 +297,7 @@
         )
         ) {
           alert(alert_text);
-          location.href = path;
+          w.location.href = path;
           return false;
         }
 
@@ -349,7 +354,6 @@
     /*c('touchstart')
     c(e)
     c(e.target.className)*/
-
     if ((e.target.nodeName === "BUTTON" || e.target.nodeName == 'BUTTON') ||
       (e.target.nodeName === "DIV" || e.target.nodeName == 'DIV')
     ) {
@@ -418,7 +422,7 @@
                 ls.sequencing = res+_new;
                 break;
               }
-
+    
               if (!menu[_i].previous_view && !_ok) {
                 path = ls.getItem('url');
                 block = true;
@@ -444,7 +448,7 @@
         )
         ) {
           alert(alert_text);
-          location.href = path;
+          w.location.href = path;
           return false;
         }
 
@@ -497,7 +501,7 @@
   }, false);
 
   d.addEventListener('touchend', (e) => {
-
+   
     if ((e.target.nodeName === "BUTTON" || e.target.nodeName == 'BUTTON') ||
       (e.target.nodeName === "DIV" || e.target.nodeName == 'DIV')
     ) {
@@ -562,7 +566,7 @@
                 ls.sequencing = res+_new;
                 break;
               }
-
+    
               if (!menu[_i].previous_view && !_ok) {
                 path = ls.getItem('url');
                 block = true;
@@ -576,7 +580,7 @@
           ls.setItem('dataObject', JSON.stringify(dataObject));
         }
         //c()
-
+        
         if (block && (
           (
             (e.target.className == 'navigate-right enabled' || e.target.className == "navigate-right enabled") ||
@@ -589,7 +593,7 @@
         )
         ) {
           alert(alert_text);
-          location.href = path;
+          w.location.href = path;
           return false;
         }
 
@@ -644,7 +648,8 @@
 
 
   var url = location.href;
-  var draw = function (a, flag) {
+  var draw = function (a, flag) { 
+  
     if (ls.getItem('draw_menu') && ls.getItem('draw_menu').length > 0) {
       draw_save = JSON.parse(ls.getItem('draw_menu'));
     }
@@ -679,11 +684,8 @@
         }
       }
     } else {
-      //var pathname = new URL(a).hash;
-      var pathname = location.hash;
+      var pathname = new URL(a).hash;
       c(pathname)
-      c('location.hash')
-      c(location.hash)
       for (var i in text_menu) {
         var size = text_menu[i].length;
         if (size > 2) {
@@ -728,7 +730,7 @@
   }
 
   if (ls.url) {
-    location.href = ls.url;
+    w.location.href = ls.url;
     draw(menuAcordeon, 'r');
   } else {
     url_obj = url;
@@ -746,6 +748,7 @@
   totalCurso();
 
   removedisabled = function(href) {
+    c(href)
     var element = w.location.href+href;
 
     if (ls.getItem('url_save') && ls.getItem('url_save').length > 0) {
@@ -767,7 +770,7 @@
         url_save.push(url_obj);
         ls.setItem('url_save', JSON.stringify(url_save));
         ls.setItem("url", element);
-
+  
         var _switch = false;
         for (var i in url_save) {
           if (url_save[i] == element) {
@@ -775,9 +778,9 @@
             break;
           }
         }
-
+    
         c(_switch)
-
+      
         if(_switch) {
           var str = href;
           var res = str.replace("/", "");
@@ -821,6 +824,5 @@
       draw(w.location.href, 'a');
     }
   });
-
 
 })(document, window, console.log, localStorage);
