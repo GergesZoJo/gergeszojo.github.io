@@ -76,6 +76,8 @@
 
   //TODO: /////////////////////////////////////////
   d.addEventListener('click', (e) => {
+    c(ls);
+    c(localStorage)
     if ((e.target.nodeName === "BUTTON" || e.target.nodeName == 'BUTTON') ||
       (e.target.nodeName === "DIV" || e.target.nodeName == 'DIV')
     ) {
