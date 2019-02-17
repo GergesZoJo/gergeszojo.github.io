@@ -776,59 +776,59 @@
   d.querySelector('body').setAttribute('oncopy', 'return false;');
   totalCurso();
 
-  // removedisabled = function(href) {
-  // function removedisabled(href) {
-  //   c(href)
-  //   var element = w.location.href+href;
+  removedisabled = function(href) {
+  function removedisabled(href) {
+    c(href)
+    var element = w.location.href+href;
 
-  //   if (ls.getItem('url_save') && ls.getItem('url_save').length > 0) {
-  //     url_save = JSON.parse(ls.getItem('url_save'));
-  //   }
+    if (ls.getItem('url_save') && ls.getItem('url_save').length > 0) {
+      url_save = JSON.parse(ls.getItem('url_save'));
+    }
 
-  //   var _switch=false;
-  //   for(var i in url_save) {
-  //     if(url_save[i] == element) {
-  //       _switch=true;
-  //       break;
-  //     }
-  //   }
-  //   c(_switch)
+    var _switch=false;
+    for(var i in url_save) {
+      if(url_save[i] == element) {
+        _switch=true;
+        break;
+      }
+    }
+    c(_switch)
 
-  //   if ( !_switch ) {
-  //     if(ls.sequencing == element) {
-  //       url_obj = element;
-  //       url_save.push(url_obj);
-  //       ls.setItem('url_save', JSON.stringify(url_save));
-  //       ls.setItem("url", element);
+    if ( !_switch ) {
+      if(ls.sequencing == element) {
+        url_obj = element;
+        url_save.push(url_obj);
+        ls.setItem('url_save', JSON.stringify(url_save));
+        ls.setItem("url", element);
   
-  //       var _switch = false;
-  //       for (var i in url_save) {
-  //         if (url_save[i] == element) {
-  //           _switch = true;
-  //           break;
-  //         }
-  //       }
+        var _switch = false;
+        for (var i in url_save) {
+          if (url_save[i] == element) {
+            _switch = true;
+            break;
+          }
+        }
     
-  //       c(_switch)
+        c(_switch)
       
-  //       if(_switch) {
-  //         var str = href;
-  //         var res = str.replace("/", "");
-  //         var _number = parseInt(res)+1;
-  //         ls.sequencing =  w.location.href+'/'+_number;
-  //         w.location.href = element;
-  //       }
-  //     } else {
-  //       // alert("Debe seguir la secuencia.!!");
+        if(_switch) {
+          var str = href;
+          var res = str.replace("/", "");
+          var _number = parseInt(res)+1;
+          ls.sequencing =  w.location.href+'/'+_number;
+          w.location.href = element;
+        }
+      } else {
+        // alert("Debe seguir la secuencia.!!");
         
-  //         alertify.alert("Debe seguir la secuencia.!!").setHeader('Alerta').set('closable', false).set('onok', function(closeEvent) {
-  //         } );
-  //     }
-  //   } else {
-  //     w.location.href = element;
-  //   }
-  //   return false;
-  // }
+          alertify.alert("Debe seguir la secuencia.!!").setHeader('Alerta').set('closable', false).set('onok', function(closeEvent) {
+          } );
+      }
+    } else {
+      w.location.href = element;
+    }
+    return false;
+  }
 
   w.addEventListener('hashchange', (e) => {
     dataObject = [];
