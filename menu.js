@@ -776,7 +776,7 @@
   d.querySelector('body').setAttribute('oncopy', 'return false;');
   totalCurso();
 
-  removedisabled = function(href) {
+  // removedisabled = function(href) {
   function removedisabled(href) {
     c(href)
     var element = w.location.href+href;
