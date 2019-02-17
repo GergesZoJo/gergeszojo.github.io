@@ -1,5 +1,6 @@
 //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
-((d, w, c, ls) => {
+// ((d, w, c, ls) => {
+(function(d, w, c, ls) {
 
   Reveal.configure({
     touch: false,
@@ -19,15 +20,6 @@
     var edge = d.getElementById('edge');
     edge.setAttribute('style', 'background-color:red; text-align:center; display: block');
   });
-
-  /*document.addEventListener('DOMContentLoaded',function(){
-    Reveal.addEventListener( 'slidechanged', function( event ) {
-      c( event.previousSlide)
-      c( event.currentSlide)
-      c(event.indexh)
-      c(event.indexv)
-    } );
-  });*/
  
   var menu = d.getElementById("showmenu"),
     menuContainer = d.getElementById("menu-container"),
@@ -59,7 +51,7 @@
     label_obj = {};
 
 
-  menu.addEventListener('click', () => {
+  menu.addEventListener('click', function() {
     menuContainer.classList.toggle('onscreen')
     menu.classList.toggle('closemenu')
     menuAcordeon.classList.toggle('opacidad')
@@ -75,9 +67,7 @@
   }
 
   //TODO: /////////////////////////////////////////
-  d.addEventListener('click', (e) => {
-    c(ls);
-    c(localStorage)
+  d.addEventListener('click', function(e) {
     if ((e.target.nodeName === "BUTTON" || e.target.nodeName == 'BUTTON') ||
       (e.target.nodeName === "DIV" || e.target.nodeName == 'DIV')
     ) {
@@ -178,7 +168,16 @@
           return false;
         }
 
-        var searching_between_url = (dataObject.find(el => el.url === url) ? true : false);
+        // var searching_between_url = (dataObject.find(el => el.url === url) ? true : false);
+        var searching_between_url = false;
+        if(dataObject.length > 0) {
+          for(var searching in dataObject) {
+            if(dataObject[searching].url == url) {
+              searching_between_url  = true;
+            }
+          }
+        }
+
         if (!searching_between_url && (
           (
             (e.target.className == 'navigate-right enabled' || e.target.className == "navigate-right enabled") ||
@@ -228,7 +227,7 @@
     }
   });
 
-  d.addEventListener('keyup', (e) => {
+  d.addEventListener('keyup', function(e) {
     if( e.keyCode=='32') return false;
     if (e.keyCode == '37' || e.keyCode == '38' || e.keyCode == '39' || e.keyCode == '40') {
       var url = location.href,
@@ -315,7 +314,15 @@
           return false;
         }
 
-        var searching_between_url = (dataObject.find(el => el.url === url) ? true : false);
+        // var searching_between_url = (dataObject.find(el => el.url === url) ? true : false);
+        var searching_between_url = false;
+        if(dataObject.length > 0) {
+          for(var searching in dataObject) {
+            if(dataObject[searching].url == url) {
+              searching_between_url  = true;
+            }
+          }
+        }
         if (!searching_between_url && (
           (e.code == 'ArrowRight' || e.code == "ArrowRight") ||
           (e.key == 'ArrowRight' || e.key == "ArrowRight")
@@ -360,11 +367,11 @@
 
   //TODO: ////////////////////////////////////////
 
-  d.addEventListener('touchmove', (e) => {
+  d.addEventListener('touchmove', function(e) {
     e.preventDefault()
   });
 
-  d.addEventListener('touchstart', (e) => {
+  d.addEventListener('touchstart', function(e) {
     /*c('touchstart')
     c(e)
     c(e.target.className)*/
@@ -474,7 +481,15 @@
 
         }
 
-        var searching_between_url = (dataObject.find(el => el.url === url) ? true : false);
+        // var searching_between_url = (dataObject.find(el => el.url === url) ? true : false);
+        var searching_between_url = false;
+        if(dataObject.length > 0) {
+          for(var searching in dataObject) {
+            if(dataObject[searching].url == url) {
+              searching_between_url  = true;
+            }
+          }
+        }
         if (!searching_between_url &&
           (
             (e.target.className == 'navigate-right enabled' || e.target.className == "navigate-right enabled") ||
@@ -522,7 +537,7 @@
     }
   }, false);
 
-  d.addEventListener('touchend', (e) => {
+  d.addEventListener('touchend', function(e) {
    
     if ((e.target.nodeName === "BUTTON" || e.target.nodeName == 'BUTTON') ||
       (e.target.nodeName === "DIV" || e.target.nodeName == 'DIV')
@@ -626,7 +641,15 @@
           return false;
         }
 
-        var searching_between_url = (dataObject.find(el => el.url === url) ? true : false);
+        // var searching_between_url = (dataObject.find(el => el.url === url) ? true : false);
+        var searching_between_url = false;
+        if(dataObject.length > 0) {
+          for(var searching in dataObject) {
+            if(dataObject[searching].url == url) {
+              searching_between_url  = true;
+            }
+          }
+        }
         if (!searching_between_url &&
           (
             (e.target.className == 'navigate-right enabled' || e.target.className == "navigate-right enabled") ||
@@ -713,7 +736,8 @@
         }
       }
     } else {
-      var pathname = new URL(a).hash;
+      // var pathname = new URL(a).hash;
+      var pathname = w.location.hash;
       c(pathname)
       for (var i in text_menu) {
         var size = text_menu[i].length;
@@ -776,8 +800,7 @@
   d.querySelector('body').setAttribute('oncopy', 'return false;');
   totalCurso();
 
-  // removedisabled = function(href) {
-  function removedisabled(href) {
+  removedisabled = function(href) {
     c(href)
     var element = w.location.href+href;
 
@@ -830,7 +853,7 @@
     return false;
   }
 
-  w.addEventListener('hashchange', (e) => {
+  w.addEventListener('hashchange', function(e) {
     dataObject = [];
     var _ok = false;
 
