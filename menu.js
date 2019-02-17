@@ -12,12 +12,12 @@
   
     Reveal.addEventListener( 'init', function( event ) {
       var edge = d.getElementById('edge');
-      edge.setAttribute('style', 'background-color:red; text-align:center; display: none');
+      edge.setAttribute('style', 'background-color:red; text-align:center; display: none; padding-left:45px;');
     });
   
     Reveal.addEventListener( 'shown', function( event) {
       var edge = d.getElementById('edge');
-      edge.setAttribute('style', 'background-color:red; text-align:center; display: block');
+      edge.setAttribute('style', 'background-color:red; text-align:center; display: block; padding-left:45px;');
     });
    
     var menu = d.getElementById("showmenu"),
