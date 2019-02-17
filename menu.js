@@ -819,8 +819,6 @@
         // alert("Debe seguir la secuencia.!!");
         
           alertify.alert("Debe seguir la secuencia.!!").setHeader('Alerta').set('closable', false).set('onok', function(closeEvent) {
-
-            w.location.href = path;
           } );
       }
     } else {
