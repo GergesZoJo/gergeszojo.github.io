@@ -166,8 +166,13 @@
           )
         )
         ) {
-          alert(alert_text);
-          w.location.href = path;
+          // alert(alert_text);
+          e.preventDefault()
+          alertify.alert(alert_text).setHeader('Alerta').set('closable', false).set('onok', function(closeEvent) {
+
+            w.location.href = path;
+          } ); ;
+          
           return false;
         }
 
@@ -296,8 +301,15 @@
           (e.key == 'ArrowRight' || e.key == "ArrowRight")
         )
         ) {
-          alert(alert_text);
-          w.location.href = path;
+          // alert(alert_text);
+          // w.location.href = path;
+          // return false;
+          e.preventDefault()
+          alertify.alert(alert_text).setHeader('Alerta').set('closable', false).set('onok', function(closeEvent) {
+
+            w.location.href = path;
+          } ); ;
+          
           return false;
         }
 
@@ -447,9 +459,17 @@
           )
         )
         ) {
-          alert(alert_text);
-          w.location.href = path;
+          // alert(alert_text);
+          // w.location.href = path;
+          // return false;
+          e.preventDefault()
+          alertify.alert(alert_text).setHeader('Alerta').set('closable', false).set('onok', function(closeEvent) {
+
+            w.location.href = path;
+          } ); ;
+          
           return false;
+
         }
 
         var searching_between_url = (dataObject.find(el => el.url === url) ? true : false);
@@ -592,8 +612,15 @@
           )
         )
         ) {
-          alert(alert_text);
-          w.location.href = path;
+          // alert(alert_text);
+          // w.location.href = path;
+          // return false;
+          e.preventDefault()
+          alertify.alert(alert_text).setHeader('Alerta').set('closable', false).set('onok', function(closeEvent) {
+
+            w.location.href = path;
+          } ); ;
+          
           return false;
         }
 
@@ -789,7 +816,12 @@
           w.location.href = element;
         }
       } else {
-        alert("Debe seguir la secuencia.!!");
+        // alert("Debe seguir la secuencia.!!");
+        
+          alertify.alert("Debe seguir la secuencia.!!").setHeader('Alerta').set('closable', false).set('onok', function(closeEvent) {
+
+            w.location.href = path;
+          } );
       }
     } else {
       w.location.href = element;
